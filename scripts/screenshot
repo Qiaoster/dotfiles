@@ -1,0 +1,7 @@
+#!/bin/dash -e
+
+if [ -n "$DISPLAY" ]; then
+   # X11 is running
+   selection=$(hacksaw -f "-i %i -g %g")
+   shotgun $selection - | xclip -t 'image/png' -selection clipboard
+fi
