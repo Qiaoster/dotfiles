@@ -1,7 +1,6 @@
 #! /bin/sh
 
 xrandr --output HDMI-0 --auto --output DP-0 --auto --primary --above HDMI-0 --rotate inverted &&
-setxkbmap -layout us -variant colemak_dh_ortho &&
 pgrep -x sxhkd > /dev/null || sxhkd &&
 compfy -b &
 emacs --daemon &
@@ -18,6 +17,8 @@ if [[ $HOSTNAME == home ]]; then
     
     bspc monitor DP-0 -d 1 2 3 4 5
     bspc monitor HDMI-0 -d 6 7 8 9 0
+elif [[ $HOSTNAME == book ]] || [[ $HOSTNAME == pad ]] || [[ $HOSTNAME == suitcase ]]; then
+    setxkbmap -layout us -variant colemak_dh_ortho
 fi
 
 bspc config automatic_scheme spiral

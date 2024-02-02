@@ -21,7 +21,6 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 alias project='xrandr --output DP-5 --auto --same-as DP-1'
-alias key='setxkbmap -layout us -variant colemak_dh_ortho'
 alias sony='bluetoothctl connect 38:18:4C:1A:3E:4B'
 alias steam='flatpak run com.valvesoftware.Steam'
 alias shut='sudo systemctl poweroff'
