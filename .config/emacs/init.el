@@ -310,7 +310,7 @@
 (use-package moe-theme)
 
 (load-theme 'doom-gruvbox t)
-(set-face-attribute 'default nil :font "Fira Code" :height 180)
+(set-face-attribute 'default nil :font "Fira Code" :height 200)
 
 ;;Generated stuff
 (custom-set-variables
