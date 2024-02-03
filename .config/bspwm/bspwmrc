@@ -1,6 +1,5 @@
 #! /bin/sh
 
-xrandr --output HDMI-0 --auto --output DP-0 --auto --primary --above HDMI-0 --rotate inverted &&
 pgrep -x sxhkd > /dev/null || sxhkd &&
 compfy -b &
 emacs --daemon &
@@ -10,15 +9,18 @@ udiskie -f pcmanfm &
 bluetoothctl connect 38:18:4C:1A:3E:4B &
 conky &
 easyeffects --gapplication-service &
-feh --bg-fill --no-xinerama --no-fehbg .config/wallpaper/gruvbox_image31.png &
 
 if [[ $HOSTNAME == home ]]; then
+    xrandr --output HDMI-0 --auto --output DP-0 --auto --primary --above HDMI-0 --rotate inverted &&
+    feh --bg-fill --no-xinerama --no-fehbg .config/wallpaper/gruvbox_image31.png &
+    
     bspc wm -O HDMI-0 DP-0
     
     bspc monitor DP-0 -d 1 2 3 4 5
     bspc monitor HDMI-0 -d 6 7 8 9 0
 elif [[ $HOSTNAME == book ]] || [[ $HOSTNAME == pad ]] || [[ $HOSTNAME == suitcase ]]; then
     setxkbmap -layout us -variant colemak_dh_ortho
+    bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 fi
 
 bspc config automatic_scheme spiral

@@ -1,7 +1,7 @@
 #
 # wm independent hotkeys
 #
-	
+
 # terminal emulator
 super + t
 	alacritty
@@ -23,6 +23,10 @@ XF86AudioRaiseVolume
 	amixer set Master 5%+
 XF86AudioMute
         amixer set Master toggle
+XF86MonBrightnessUp
+	brightnessctl s +10%
+XF86MonBrightnessDown
+	brightnessctl s 10%-
 	
 #
 # bspwm hotkeys
@@ -44,9 +48,12 @@ super + l
 super + m
 	bspc node -s biggest.local
 
-# swap monitors
-super + x
-        bspc monitor ^<0> -s ^<1>
+if [[ $HOSTNAME == home ]]; then
+   # swap monitors
+   super + x
+    	     bspc monitor ^<0> -s ^<1>
+fi
+	
 #
 # state/flags
 #
@@ -63,13 +70,14 @@ super + ctrl + {m,x,y,z}
 # focus/swap
 #
 
-# focus the node in the given direction
+if [[ $HOSTNAME = "home" ]]; then
 super + {_,shift + }{n,e,u,i}
+      bspc node -{f,s} {west,south,north,east}
+elif [[ $HOSTNAME = "book" ]] || [[ $HOSTNAME == "pad" ]] || [[ $HOSTNAME = "suitcase"]]; then
+# focus the node in the given direction
+super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
-
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
+fi
 
 # focus the last node/desktop
 super + {grave,Tab}
@@ -88,18 +96,6 @@ super + {_,shift + }{1-9,0}
 #
 # move/resize
 #
-
-# expand a window by moving one of its side outward
-super + alt + {n,e,u,i}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# contract a window by moving one of its side inward
-super + alt + shift + {n,e,u,i}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-# move a floating window
-super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # quick launch
 

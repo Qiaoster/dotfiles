@@ -1,0 +1,10 @@
+configuration
+{
+	font: "Fira Sans 16";
+	
+}
+
+listview {
+	 lines: 7;
+	 columns: 2;
+}
