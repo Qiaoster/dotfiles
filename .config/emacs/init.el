@@ -302,6 +302,8 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+(use-package rainbow-mode)
+(rainbow-mode 1)
 
 (load-theme 'doom-solarized-dark-high-contrast t)
 (set-face-attribute 'default nil :font "Fira Code" :height 200)
@@ -319,7 +321,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(impatient-mode markdown-preview-mode markdown-soma grip-mode minimap ccls evil-nerd-commenter lsp-treemacs treemacs lsp-ui company-box company python-mode tree-sitter-langs tree-sitter org-journal magit counsel-projectile projectile hydra all-the-icons doom-themes helpful counsel ivy-rich which-key rainbow-delimiters doom-modeline ivy use-package)))
+   '(rainbow-mode impatient-mode markdown-preview-mode markdown-soma grip-mode minimap ccls evil-nerd-commenter lsp-treemacs treemacs lsp-ui company-box company python-mode tree-sitter-langs tree-sitter org-journal magit counsel-projectile projectile hydra all-the-icons doom-themes helpful counsel ivy-rich which-key rainbow-delimiters doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
