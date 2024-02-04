@@ -8,7 +8,7 @@ pcmanfm --daemon-mode --no-desktop &
 udiskie -f pcmanfm &
 bluetoothctl connect 38:18:4C:1A:3E:4B &
 conky &
-easyeffects --gapplication-service &
+#easyeffects --gapplication-service &
 dunst &
 
 if [[ $HOSTNAME == home ]]; then
