@@ -9,6 +9,7 @@ udiskie -f pcmanfm &
 bluetoothctl connect 38:18:4C:1A:3E:4B &
 conky &
 easyeffects --gapplication-service &
+dunst &
 
 if [[ $HOSTNAME == home ]]; then
     xrandr --output HDMI-0 --auto --output DP-0 --auto --primary --above HDMI-0 --rotate inverted &&
@@ -26,7 +27,7 @@ fi
 bspc config automatic_scheme spiral
 bspc config initial_polarity first_child
 bspc config focus_follows_pointer true
-bspc config pointer_follows_monitor true
+bspc config pointer_follows_monitor false
 
 bspc config pointer_modifier ctrl
 

@@ -27,13 +27,6 @@
       (format "<!DOCTYPE html><html><title>Impatient Markdown</title><xmp theme=\"united\" style=\"display:none;\"> %s  </xmp><script src=\"http://ndossougbe.github.io/strapdown/dist/strapdown.js\"></script></html>" (buffer-substring-no-properties (point-min) (point-max))))
     (current-buffer)))
 
-(use-package ellama
-  :init
-  (setopt ellama-language "English")
-  (require 'llm-ollama)
-  (setopt ellama-provider
-		  (make-llm-ollama
-		   :chat-model "llama2-uncensored" :embedding-model "llama2-uncensored")))
 (use-package minimap)
 (use-package tree-sitter-langs)
 (use-package tree-sitter
@@ -232,9 +225,11 @@
 
 (global-set-key (kbd "M-m") 'save-and-run)
 
-;; compile and run current c robot script
+;; compile and run current c main
 (global-set-key (kbd "M-r")
-		(lambda () (interactive) (eshell-command "tcc -run -Wunsupported -Wall -Werror main.c -o kilo")));;(shell-command "tcc -run -L/usr/local/lib -leyesim ctest.c")))
+		(lambda () (interactive)
+		  (save-buffer)
+		  (eshell-command "tcc -run -Wunsupported -Wall -Werror main.c ")));;(shell-command "tcc -run -L/usr/local/lib -leyesim ctest.c")))
 (global-set-key (kbd "M-a") 'beginning-of-visual-line)
 (global-set-key (kbd "C-a") 'back-to-indentation)
 
@@ -307,10 +302,15 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
-(use-package moe-theme)
 
-(load-theme 'doom-gruvbox t)
+(load-theme 'doom-solarized-dark-high-contrast t)
 (set-face-attribute 'default nil :font "Fira Code" :height 200)
+(set-frame-font "Fira Code 20")
+(add-hook 'server-after-make-frame-hook
+	  (lambda ()
+	    (set-frame-font "Fira Code 20")
+	    ))
+
 
 ;;Generated stuff
 (custom-set-variables
@@ -319,7 +319,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ellama impatient-mode markdown-preview-mode markdown-soma grip-mode minimap moe-theme ccls evil-nerd-commenter lsp-treemacs treemacs lsp-ui company-box company python-mode tree-sitter-langs tree-sitter org-journal magit counsel-projectile projectile hydra all-the-icons doom-themes helpful counsel ivy-rich which-key rainbow-delimiters doom-modeline ivy use-package)))
+   '(impatient-mode markdown-preview-mode markdown-soma grip-mode minimap ccls evil-nerd-commenter lsp-treemacs treemacs lsp-ui company-box company python-mode tree-sitter-langs tree-sitter org-journal magit counsel-projectile projectile hydra all-the-icons doom-themes helpful counsel ivy-rich which-key rainbow-delimiters doom-modeline ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
