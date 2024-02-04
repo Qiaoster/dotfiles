@@ -278,7 +278,7 @@
 (setq-default c-basic-offset 4)
 (setq-default c-indentation-style 'cc-mode)
 (setq-default gdb-many-windows t)
-
+(desktop-save-mode 1)
 ;;Line Numbers
 (setq column-number-mode t)
 (global-display-line-numbers-mode t)
