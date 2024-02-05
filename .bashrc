@@ -13,6 +13,11 @@ export HISTFILE="${XDG_STATE_HOME}/bash/history"
 export CARGO_HOME="$${XDG_DATA_HOME}/cargo"
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
 
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export SDL_IM_MODULE=fcitx
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
