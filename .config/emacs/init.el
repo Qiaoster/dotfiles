@@ -306,11 +306,11 @@
 (rainbow-mode 1)
 
 (load-theme 'doom-solarized-dark-high-contrast t)
-(set-face-attribute 'default nil :font "Fira Code" :height 200)
-(set-frame-font "Fira Code 20")
+(set-face-attribute 'default nil :font "JetBrains Mono NL" :height 200)
+(set-frame-font "JetBrains Mono NL 20")
 (add-hook 'server-after-make-frame-hook
 	  (lambda ()
-	    (set-frame-font "Fira Code 20")
+	    (set-frame-font "JetBrains Mono NL 20")
 	    ))
 
 
