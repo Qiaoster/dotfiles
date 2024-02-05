@@ -27,7 +27,7 @@ fi
 bspc config automatic_scheme spiral
 bspc config initial_polarity first_child
 bspc config focus_follows_pointer true
-bspc config pointer_follows_monitor false
+bspc config pointer_follows_monitor true
 
 bspc config pointer_modifier ctrl
 

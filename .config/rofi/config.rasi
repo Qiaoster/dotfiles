@@ -152,11 +152,11 @@ configuration {
 
 @theme "current.rasi"
 
+
 listview {
 	 lines: 6;
 	 columns: 2;
 }
-
 window {
        width: 50%;
 }
