@@ -42,8 +42,10 @@
 (setq org-directory "~/org/")
 
 (after! org-journal
-  (setq org-journal-dir "~/org/journal")
-  (setq org-journal-file-type 'weekly))
+  (setq org-journal-dir "~/org/journal/"
+        org-journal-file-type 'monthly
+        org-journal-file-format "%Y%B.org"
+        org-journal-date-format "%Y%B%d, %A"))
 
 (after! org-agenda
   (setq org-agenda-files '("~/UWA2024-1/UWA.org")))
