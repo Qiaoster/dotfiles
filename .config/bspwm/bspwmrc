@@ -11,7 +11,7 @@ conky &
 #easyeffects --gapplication-service &
 dunst &
 
-if [[ $HOSTNAME == home ]]; then
+if [ $HOSTNAME == home ]; then
     xrandr --output DP-0 --auto --primary --rotate inverted --output HDMI-0 --auto --below DP-0 &&
     feh --bg-fill --no-xinerama --no-fehbg .config/wallpaper/gruvbox_image31.png &
     
@@ -19,7 +19,7 @@ if [[ $HOSTNAME == home ]]; then
     
     bspc monitor DP-0 -d 1 2 3 4 5
     bspc monitor HDMI-0 -d 6 7 8 9 0
-elif [[ $HOSTNAME == book ]] || [[ $HOSTNAME == pad ]] || [[ $HOSTNAME == suitcase ]]; then
+elif [ $HOSTNAME == book ] || [ $HOSTNAME == pad ] || [ $HOSTNAME == suitcase ]; then
     setxkbmap -layout us -variant colemak_dh_ortho
     bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 fi
@@ -32,8 +32,10 @@ bspc config pointer_follows_monitor true
 bspc config pointer_modifier ctrl
 
 bspc config border_width         2
-bspc config normal_border_color #444444
-bspc config focused_border_color #77BBFF
+bspc config normal_border_color "#888888"
+bspc config active_border_color "#888888"
+bspc config focused_border_color "#ffffff"
+
 bspc config window_gap          10
 
 bspc config split_ratio          0.55
@@ -43,3 +45,4 @@ bspc config gapless_monocle      true
 bspc rule -a Emacs state=tiled
 bspc rule -a Steam state=floating 
 bspc rule -a Pcmanfm state=floating
+bspc rule -a Lollypop state=floating

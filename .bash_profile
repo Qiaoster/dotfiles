@@ -4,7 +4,7 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-export PATH=~/.config/emacs/bin:$PATH
+export GTK_THEME=Adwaita:dark
 
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
     exec startx
