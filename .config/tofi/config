@@ -13,10 +13,10 @@
 	# characters not in the chosen font will fail to render.
 	#
 	# Otherwise, fonts are interpreted in Pango format.
-	font = "Fira Code"
+	font = "JetBrainsMono Nerd"
 
 	# Point size of text.
-	font-size = 24
+	font-size = 30
 
 	# Comma separated list of OpenType font feature settings to apply,
 	# if supported by the chosen font. The format is similar to the CSS
@@ -50,7 +50,7 @@
 	# Default text color
 	#
 	# All text defaults to this color if not otherwise specified.
-	text-color = #ebdbb2
+	text-color = #93a1a1
 
 	# All pieces of text have the same theming attributes available:
 	#
@@ -69,27 +69,27 @@
 
 	# Prompt text theme
 	# prompt-color = #FFFFFF
-	prompt-background = #282828
-	prompt-background-padding = 0
-	prompt-background-corner-radius = 0
+	#prompt-background = #282828
+	#prompt-background-padding = 0
+	#prompt-background-corner-radius = 0
 
 	# Placeholder text theme
-	placeholder-color = #ebdbb2
-	placeholder-background = #282828
-	placeholder-background-padding = 0
-	placeholder-background-corner-radius = 0
+	#placeholder-color = #ebdbb2
+	#placeholder-background = #282828
+	#placeholder-background-padding = 0
+	#placeholder-background-corner-radius = 0
 
 	# Input text theme
 	# input-color = #ebdbb2
-	input-background = #282828
-	input-background-padding = 0
-	input-background-corner-radius = 0
+	#input-background = #282828
+	#input-background-padding = 0
+	#input-background-corner-radius = 0
 
 	# Default result text theme
 	# default-result-color = #FFFFFF
-	default-result-background = #282828
-	default-result-background-padding = 0
-	default-result-background-corner-radius = 0
+	#default-result-background = #282828
+	#default-result-background-padding = 0,0,100,0
+	#default-result-background-corner-radius = 0
 
 	# Alternate (even-numbered) result text theme
 	#
@@ -102,8 +102,8 @@
 	# alternate-result-background-corner-radius = 0
 
 	# Selection text
-	selection-color = #fe8019
-	selection-background = #00000000
+	selection-color = #d3e4d6
+	selection-background = #647a82
 	selection-background-padding = 0
 	selection-background-corner-radius = 0
 
@@ -145,14 +145,14 @@
 	prompt-text = ">>>"
 
 	# Extra horizontal padding between prompt and input.
-	prompt-padding = 20
+	prompt-padding = 35
 
 	# Placeholder input text.
 	placeholder-text = ""
 
 	# Maximum number of results to display.
 	# If 0, tofi will draw as many results as it can fit in the window.
-	num-results = 15
+	num-results = 0
 
 	# Spacing between results in pixels. Can be negative.
 	result-spacing = 0
@@ -167,23 +167,23 @@
 ### Window theming
 #
 	# Width and height of the window. Can be pixels or a percentage.
-	width = 880
-	height = 720
+	width = 50%
+	height = 40%
 
 	# Window background color
-	background-color = #282828
+	background-color = #002B36
 
 	# Width of the border outlines in pixels.
 	outline-width = 0
 
 	# Border outline color
-	outline-color = #080800
+	outline-color = #00ff99
 
 	# Width of the border in pixels.
-	border-width = 4
+	border-width = 2
 
 	# Border color
-	border-color = #d79921
+	border-color = #33ccff
 
 	# Radius of window corners in pixels.
 	corner-radius = 0
