@@ -58,7 +58,8 @@
 
 (after! org-journal
   (setq org-journal-dir "~/org/journal/"
-        org-journal-file-format "%Y-%m-%d.org"))
+        org-journal-file-format "%Y-%m-%d.org")
+  (setq org-journal-carryover-items "TODO=\"TODO\"|TODO=\"STRT\"|TODO=\"WAIT\"|TODO=\"LOOP\""))
 
 (after! org-agenda
   (setq org-agenda-files '("~/UWA2024-1/"
