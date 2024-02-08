@@ -38,6 +38,7 @@
 (setq display-line-numbers-type 't)
 (display-time-mode t)
 (visual-line-mode t)
+(doom/set-frame-opacity 90)
 (setq auto-save-default t
       make-backup-file t)
 (setq confirm-kill-emacs nil)
