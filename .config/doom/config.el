@@ -38,7 +38,10 @@
 (setq display-line-numbers-type 't)
 (display-time-mode t)
 (visual-line-mode t)
-(doom/set-frame-opacity 90)
+(defun frame-opacity (frame)
+  (set-frame-parameter frame 'alpha-background 90))
+(frame-opacity nil)
+(add-to-list 'after-make-frame-functions 'frame-opacity)
 (setq auto-save-default t
       make-backup-file t)
 (setq confirm-kill-emacs nil)
