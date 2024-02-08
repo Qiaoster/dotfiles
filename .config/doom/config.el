@@ -110,3 +110,6 @@
 (after! projectile (setq projectile-project-root-files-bottom-up
                          (remove ".git"
                                  projectile-project-root-files-bottom-up)))
+(let ((perhost "~/.config/doom/perhost.el"))
+  (when (file-exists-p perhost)
+    (load-file perhost)))

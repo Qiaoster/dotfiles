@@ -9,49 +9,51 @@
 # documentation.
 
 # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
+riverctl spawn "
+	 swww init &
+	 swww img ~/.config/wallpaper/solar-system.jpg --resize fit &
+	 emacs --daemon
+"
 
-# init
-riverctl keyboard-layout -variant colemak_dh_ortho us
+riverctl map normal Super+Shift R spawn $HOME/.config/river/init
 
-riverctl spawn "/home/qiao/scripts/wayland_init"
-
-# Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
+# Super+T to start an instance of foot (https://codeberg.org/dnkl/foot)
+riverctl map normal spawn "emacs --daemon"
 riverctl map normal Super T spawn foot
-riverctl map normal Super R spawn "tofi-drun --fuzzy-match=true --auto-accept-single=true --drun-launch=true"
-
-# Super+Q to close the focused view
+riverctl map normal Super R spawn "tofi-drun"
+# Super+W to close the focused view
 riverctl map normal Super W close
 
-# Super+Shift+E to exit river
+# Super+Shift+Q to exit river
 riverctl map normal Super+Shift Q exit
 
-# Super+J and Super+K to focus the next/previous view in the layout stack
+# Super+N and Super+I to focus the next/previous view in the layout stack
 riverctl map normal Super N focus-view next
 riverctl map normal Super I focus-view previous
 
-# Super+Shift+J and Super+Shift+K to swap the focused view with the next/previous
+# Super+Shift+N and Super+Shift+I to swap the focused view with the next/previous
 # view in the layout stack
 riverctl map normal Super+Shift N swap next
 riverctl map normal Super+Shift I swap previous
 
 # Super+Period and Super+Comma to focus the next/previous output
-riverctl map normal Super U focus-output next
-riverctl map normal Super E focus-output previous
+riverctl map normal Super Period focus-output next
+riverctl map normal Super Comma focus-output previous
 
 # Super+Shift+{Period,Comma} to send the focused view to the next/previous output
-riverctl map normal Super+Shift U send-to-output next
-riverctl map normal Super+Shift E send-to-output previous
+riverctl map normal Super+Shift Period send-to-output next
+riverctl map normal Super+Shift Comma send-to-output previous
 
-# Super+Return to bump the focused view to the top of the layout stack
+# Super+M to bump the focused view to the top of the layout stack
 riverctl map normal Super M zoom
 
-# Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
-riverctl map normal Super H send-layout-cmd rivertile "main-ratio -0.05"
-riverctl map normal Super+Shift H send-layout-cmd rivertile "main-ratio +0.05"
+# Super+U and Super+E to decrease/increase the main ratio of rivertile(1)
+riverctl map normal Super U send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map normal Super E send-layout-cmd rivertile "main-ratio +0.05"
 
 # Super+Shift+H and Super+Shift+L to increment/decrement the main count of rivertile(1)
-# riverctl map normal Super+Shift U send-layout-cmd rivertile "main-count +1"
-# riverctl map normal Super+Shift E send-layout-cmd rivertile "main-count -1"
+riverctl map normal Super+Shift H send-layout-cmd rivertile "main-count +1"
+riverctl map normal Super+Shift L send-layout-cmd rivertile "main-count -1"
 
 # Super+Alt+{H,J,K,L} to move views
 riverctl map normal Super+Alt N move left 100
@@ -70,6 +72,14 @@ riverctl map normal Super+Alt+Shift N resize horizontal -100
 riverctl map normal Super+Alt+Shift E resize vertical 100
 riverctl map normal Super+Alt+Shift U resize vertical -100
 riverctl map normal Super+Alt+Shift I resize horizontal 100
+
+touchpad=pointer-1118-2415-Microsoft_Surface_Type_Cover_Touchpad
+
+riverctl focus-follows-cursor normal
+riverctl input $touchpad natural-scroll enabled
+riverctl input $touchpad middle-emulation enabled
+riverctl input $touchpad disable-while-typing enabled
+riverctl input $touchpad tap enabled
 
 # Super + Left Mouse Button to move views
 riverctl map-pointer normal Super BTN_LEFT move-view
@@ -149,9 +159,9 @@ do
 done
 
 # Set background and border color
-riverctl background-color 0x002b36
-riverctl border-color-focused 0x93a1a1
-riverctl border-color-unfocused 0x586e75
+riverctl background-color 0x282828
+riverctl border-color-focused 0xd79921
+riverctl border-color-unfocused 0x665c54
 
 # Set keyboard repeat rate
 riverctl set-repeat 50 300
@@ -167,3 +177,5 @@ riverctl csd-filter-add app-id "gedit"
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
 rivertile -view-padding 6 -outer-padding 6 &
+
+riverctl keyboard-layout -variant colemak_dh_ortho us
