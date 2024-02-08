@@ -46,3 +46,4 @@ bspc rule -a Emacs state=tiled
 bspc rule -a Steam state=floating 
 bspc rule -a Pcmanfm state=floating
 bspc rule -a Lollypop state=floating
+bspc rule -a wechat.exe state=floating
