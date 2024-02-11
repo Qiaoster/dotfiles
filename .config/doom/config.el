@@ -114,6 +114,18 @@
 (after! projectile (setq projectile-project-root-files-bottom-up
                          (remove ".git"
                                  projectile-project-root-files-bottom-up)))
+
+(defun save-and-run ()
+  "save current buffer and run \"./make\" command on current directory"
+  (interactive)
+  (save-buffer)
+  (let ((split-width-threshold nil)
+	(split-height-threshold 0))
+    (save-window-excursion
+      (async-shell-command "./make"))))
+
+(global-set-key (kbd "M-m") 'save-and-run)
+
 (let ((perhost "~/.config/doom/perhost.el"))
   (when (file-exists-p perhost)
     (load-file perhost)))
