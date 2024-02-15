@@ -4,7 +4,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &&
 compfy -b &
 LC_CTYPE=zh_CN.UTF-8 emacs --daemon &
 fcitx &
-pcmanfm --daemon-mode --no-desktop &
+pcmanfm --daemon-mode &
 udiskie -f pcmanfm &
 bluetoothctl connect 38:18:4C:1A:3E:4B &
 conky &
