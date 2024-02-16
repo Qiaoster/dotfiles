@@ -15,6 +15,8 @@ export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
 
 export GPODDER_HOME="${HOME}/media/podcast"
 
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
