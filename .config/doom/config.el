@@ -66,7 +66,7 @@
   (setq org-journal-carryover-items "TODO=\"TODO\"|TODO=\"STRT\"|TODO=\"WAIT\"|TODO=\"LOOP\""))
 
 (after! org-agenda
-  (setq org-agenda-files '("~/UWA2024-1/"
+  (setq org-agenda-files '("~/UWA2024-01/"
                            "~/org/journal/"
                            "~/org/"))
   (setq org-agenda-include-diary t))
