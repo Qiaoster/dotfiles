@@ -4,11 +4,11 @@
 
 # terminal emulator
 super + t
-	alacritty msg create-window || alacritty
+    kitty --single-instance
+#	alacritty msg create-window || alacritty
 
 # program launcher
 super + r
-#	rofi -show drun
 	rofi -modes "drun,window,run" -show drun
 
 # make sxhkd reload its configuration files:

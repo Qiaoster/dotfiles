@@ -31,11 +31,11 @@ bspc config pointer_follows_monitor true
 bspc config pointer_modifier ctrl
 
 bspc config border_width         2
-bspc config normal_border_color "#888888"
-bspc config active_border_color "#888888"
-bspc config focused_border_color "#bbbbff"
+bspc config normal_border_color "#006b76"
+bspc config active_border_color "#006b76"
+bspc config focused_border_color "#b3c4c6"
 
-bspc config window_gap          10
+bspc config window_gap          6
 
 bspc config split_ratio          0.55
 bspc config borderless_monocle   true
