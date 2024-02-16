@@ -37,7 +37,7 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 't)
 (display-time-mode t)
-(visual-line-mode t)
+(global-visual-line-mode t)
 (defun frame-opacity (frame)
   (set-frame-parameter frame 'alpha-background 90))
 (frame-opacity nil)
@@ -45,6 +45,7 @@
 (setq auto-save-default t
       make-backup-file t)
 (setq confirm-kill-emacs nil)
+(add-hook! 'evil-insert-state-exit-hook (save-buffer))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
