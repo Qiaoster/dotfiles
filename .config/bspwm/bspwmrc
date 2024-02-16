@@ -1,7 +1,6 @@
 #! /bin/sh
 
 pgrep -x sxhkd > /dev/null || sxhkd &&
-compfy -b &
 LC_CTYPE=zh_CN.UTF-8 emacs --daemon &
 fcitx &
 pcmanfm --daemon-mode &
@@ -10,6 +9,7 @@ bluetoothctl connect 38:18:4C:1A:3E:4B &
 conky &
 #easyeffects --gapplication-service &
 dunst &
+compfy -b &
 
 if [ $HOSTNAME == home ]; then
     xrandr --output DP-0 --auto --primary --rotate inverted --output HDMI-0 --auto --below DP-0 &&

@@ -8,9 +8,9 @@ decorations = "None"
 opacity = 1
 
 [font]
-normal = { family = "Fira Mono", style = "Regular"  }
-bold = { family = "Fira Mono", style = "Bold" }
-italic = { family = "Fira Mono", style = "Italic" }
+normal = { family = "JetBrainsMonoNerdFont", style = "Regular"  }
+bold = { family = "JetBrainsMonoNerdFont", style = "Bold" }
+italic = { family = "JetBrainsMonoNerdFont", style = "Italic" }
 offset = { x = 0, y = 5 }
 
 [colors]
