@@ -13,7 +13,7 @@ compfy -b &
 
 if [ $HOSTNAME == home ]; then
     xrandr --output DP-0 --auto --primary --rotate inverted --output HDMI-0 --auto --below DP-0 &&
-    feh --bg-fill --no-xinerama --no-fehbg .config/wallpaper/gruvbox_image31.png &
+    feh --bg-fill --no-xinerama --no-fehbg .config/wallpaper/volition.jpg &
     bspc wm -O DP-0 HDMI-0
     
     bspc monitor DP-0 -d 1 2 3 4 5

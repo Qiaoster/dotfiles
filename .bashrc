@@ -11,7 +11,7 @@ export XDG_RUNTIME_HOME="${HOME}/.local.runtime"
 export HISTFILE="${XDG_STATE_HOME}/bash/history"
 
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-export CARGO_HOME="$${XDG_DATA_HOME}/cargo"
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
 export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 
@@ -23,6 +23,9 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx
+
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
 export PATH=~/.config/emacs/bin:~/scripts:$PATH
 #
