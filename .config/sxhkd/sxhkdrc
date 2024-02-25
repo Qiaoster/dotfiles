@@ -20,6 +20,7 @@ XF86AudioPlay
 	playerctl play-pause
 XF86AudioLowerVolume
 	amixer set Master 5%-
+    #change_volume_x11 2dB+ unmute
 XF86AudioRaiseVolume
     amixer set Master 5%+
 XF86AudioMute
