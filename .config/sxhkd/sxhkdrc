@@ -106,4 +106,4 @@ super + b
         brave
 
 super + s
-        ~/scripts/screenshot
+        ~/scripts/screenshot_x11

@@ -9,7 +9,8 @@ bluetoothctl connect 38:18:4C:1A:3E:4B &
 conky &
 #easyeffects --gapplication-service &
 dunst &
-compfy -b &
+#compfy -b &
+picom -b &
 
 if [ $HOSTNAME == home ]; then
     xrandr --output DP-0 --auto --primary --rotate inverted --output DP-5 --auto --below DP-0 &&
