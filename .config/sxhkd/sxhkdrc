@@ -19,12 +19,11 @@ super + ctrl + r
 XF86AudioPlay
 	playerctl play-pause
 XF86AudioLowerVolume
-	amixer set Master 5%-
-    #change_volume_x11 2dB+ unmute
+    ~/scripts/change_volume_x11 5%- unmute
 XF86AudioRaiseVolume
-    amixer set Master 5%+
+    ~/scripts/change_volume_x11 5%+ unmute
 XF86AudioMute
-        amixer set Master toggle
+    ~/scripts/change_volume_x11 0+ toggle
 XF86MonBrightnessUp
 	brightnessctl s +10%
 XF86MonBrightnessDown
