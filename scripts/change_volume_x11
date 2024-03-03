@@ -1,0 +1,24 @@
+#!/bin/dash
+# changeVolume
+
+# Arbitrary but unique message tag
+msgTag="myvolume"
+
+# Change the volume using alsa(might differ if you use pulseaudio)
+amixer set Master "$@" > /dev/null
+
+# Query amixer for the current volume and whether or not the speaker is muted
+volume="$(amixer get Master | tail -1 | awk '{print $4}' | sed 's/[^0-9]*//g')"
+mute="$(amixer get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
+if [[ "$mute" == "off" ]]; then
+    # Show the sound muted notification
+    dunstify -a "changeVolume" -u low -i audio-volume-muted -h string:x-dunst-stack-tag:$msgTag "🔇 Muted"
+else
+    # Show the volume notification
+    # some hack arithmetic to make result always land on multiples of 5%, bash can't do float math
+    volumePercent=$((5*((volume)*20/65535)))
+    dunstify -a "changeVolume" -u low -i audio-volume-high -h string:x-dunst-stack-tag:$msgTag -h int:value:"$volume" "🔊 Volume: ${volumePercent}%"
+fi
+
+# Play the volume changed sound
+canberra-gtk-play -i audio-volume-change -d "changeVolume"

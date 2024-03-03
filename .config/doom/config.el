@@ -40,12 +40,11 @@
 (global-visual-line-mode t)
 (set-frame-parameter nil 'alpha-background 90)
 (add-to-list 'default-frame-alist '(alpha-background . 90))
-;;(defun frame-opacity (frame)
-;;  (set-frame-parameter frame 'alpha-background 90))
-;;(frame-opacity nil)
-;;(add-to-list 'after-make-frame-functions 'frame-opacity)
 (setq auto-save-default t
       make-backup-file t)
+(add-hook 'evil-insert-state-exit-hook
+           (lambda ()
+             (call-interactively #'save-buffer)))
 (setq confirm-kill-emacs nil)
 (add-hook! 'evil-insert-state-exit-hook
   (lambda ()
@@ -71,7 +70,7 @@
   (setq org-journal-carryover-items "TODO=\"TODO\"|TODO=\"STRT\"|TODO=\"WAIT\"|TODO=\"LOOP\""))
 
 (after! org-agenda
-  (setq org-agenda-files '("~/UWA2024-01/"
+  (setq org-agenda-files '("~/UWA2024_01/"
                            "~/org/journal/"
                            "~/org/"))
   (setq org-agenda-include-diary t))
