@@ -17,7 +17,7 @@ else
     # Show the volume notification
     # some hack arithmetic to make result always land on multiples of 5%, bash can't do float math
     volumePercent=$((5*((volume)*20/65535)))
-    dunstify -a "changeVolume" -u low -i audio-volume-high -h string:x-dunst-stack-tag:$msgTag -h int:value:"$volume" "🔊 Volume: ${volumePercent}%"
+    dunstify -a "changeVolume" -u low -i audio-volume-high -h string:x-dunst-stack-tag:$msgTag -h int:value:"$volumePercent" "🔊 Volume: ${volumePercent}%"
 fi
 
 # Play the volume changed sound
