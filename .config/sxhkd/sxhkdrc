@@ -19,11 +19,11 @@ super + ctrl + r
 XF86AudioPlay
 	playerctl play-pause
 XF86AudioLowerVolume
-    ~/scripts/change_volume_x11 5%- unmute
+    ~/scripts/change_volume 5%- unmute
 XF86AudioRaiseVolume
-    ~/scripts/change_volume_x11 5%+ unmute
+    ~/scripts/change_volume 5%+ unmute
 XF86AudioMute
-    ~/scripts/change_volume_x11 0+ toggle
+    ~/scripts/change_volume 0+ toggle
 XF86MonBrightnessUp
 	brightnessctl s +10%
 XF86MonBrightnessDown
