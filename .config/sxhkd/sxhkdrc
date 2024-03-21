@@ -105,4 +105,5 @@ super + b
         brave
 
 super + s
-        ~/scripts/screenshot_x11
+        flameshot gui
+#~/scripts/screenshot_x11
