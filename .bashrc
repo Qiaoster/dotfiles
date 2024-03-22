@@ -27,6 +27,9 @@ export SDL_IM_MODULE=fcitx
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
+export R_ENVIRON_USER="$XDG_CONFIG_HOME/R/Renviron"
+export R_LIBS_USER="$XDG_DATA_HOME/R/library"
+
 export PATH=~/.config/emacs/bin:~/scripts:$PATH
 #
 # If not running interactively, don't do anything
