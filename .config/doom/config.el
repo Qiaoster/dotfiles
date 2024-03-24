@@ -42,13 +42,13 @@
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 (setq auto-save-default t
       make-backup-file t)
-(add-hook 'evil-insert-state-exit-hook
-           (lambda ()
-             (call-interactively #'save-buffer)))
+;;(add-hook 'evil-insert-state-exit-hook
+;;           (lambda ()
+;;             (call-interactively #'save-buffer)))
 (setq confirm-kill-emacs nil)
-(add-hook! 'evil-insert-state-exit-hook
-  (lambda ()
-    (call-interactively #'save-buffer)))
+;;(add-hook! 'evil-insert-state-exit-hook
+;;  (lambda ()
+;;    (call-interactively #'save-buffer)))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
