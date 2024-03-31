@@ -42,9 +42,10 @@
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 (setq auto-save-default t
       make-backup-file t)
-;;(add-hook 'evil-insert-state-exit-hook
-;;           (lambda ()
-;;             (call-interactively #'save-buffer)))
+(add-hook 'evil-insert-state-exit-hook
+           (lambda ()
+             (unless (eq major-mode 'shell-mode)
+               (call-interactively #'save-buffer))))
 (setq confirm-kill-emacs nil)
 ;;(add-hook! 'evil-insert-state-exit-hook
 ;;  (lambda ()
