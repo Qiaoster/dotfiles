@@ -80,11 +80,6 @@
   (setq org-clock-persist t)
   (org-clock-persistence-insinuate))
 
-(use-package! org-archive
-  :after org
-  :config
-  (setq org-archive-location "archive.org::datetree/"))
-
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -119,6 +114,7 @@
 (after! projectile (setq projectile-project-root-files-bottom-up
                          (remove ".git"
                                  projectile-project-root-files-bottom-up)))
+
 
 (defun save-and-run ()
   "save current buffer and run \"./make\" command on current directory"

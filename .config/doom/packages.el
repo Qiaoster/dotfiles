@@ -9,6 +9,13 @@
 ;; (package! some-package)
 (package! org-journal)
 (package! evil-tutor)
+(package! elpy
+  :config
+  (elpy-enable))
+(package! org-archive
+  :after org
+  :config
+  (setq org-archive-location "archive.org::datetree/"))
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
