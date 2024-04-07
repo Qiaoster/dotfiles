@@ -9,9 +9,6 @@
 ;; (package! some-package)
 (package! org-journal)
 (package! evil-tutor)
-(package! elpy
-  :config
-  (elpy-enable))
 (package! org-archive
   :after org
   :config

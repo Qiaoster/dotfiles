@@ -115,7 +115,6 @@
                          (remove ".git"
                                  projectile-project-root-files-bottom-up)))
 
-
 (defun save-and-run ()
   "save current buffer and run \"./make\" command on current directory"
   (interactive)
