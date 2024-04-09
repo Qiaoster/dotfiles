@@ -19,16 +19,28 @@ export GPODDER_HOME="${HOME}/media/podcast"
 
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-export SDL_IM_MODULE=fcitx
+#export GTK_IM_MODULE=fcitx
+#export QT_IM_MODULE=fcitx
+#export XMODIFIERS=@im=fcitx
+#export SDL_IM_MODULE=fcitx
 
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
 export R_ENVIRON_USER="$XDG_CONFIG_HOME/R/Renviron"
 export R_LIBS_USER="$XDG_DATA_HOME/R/library"
+
+# if [ -z "${WAYLAND_DISPLAY}" ]; then
+#     export XDG_CURRENT_SESSION=Hyprland
+#     export XDG_SESSION_TYPE=wayland
+#     export XDG_SESSION_DESKTOP=Hyprland
+#     export GDK_BACKEND=wayland
+#     export QT_QPA_PLATFORM=wayland
+#     export SDL_VIDEODRIVER=wayland
+#     export CLUTTER_BACKEND=wayland
+#     export XCURSOR_SIZE=40
+#     export QT_QPA_PLATFORMTHEME=qt6ct
+# fi
 
 export PATH=~/.config/emacs/bin:~/scripts:$PATH
 #
