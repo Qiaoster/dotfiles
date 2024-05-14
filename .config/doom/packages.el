@@ -9,6 +9,7 @@
 ;; (package! some-package)
 (package! org-journal)
 (package! evil-tutor)
+(package! good-scroll)
 ;;(package! org-archive
 ;;  :after org
 ;;  :config

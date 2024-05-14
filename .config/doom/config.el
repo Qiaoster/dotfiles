@@ -38,6 +38,7 @@
 (setq display-line-numbers-type 't)
 (display-time-mode t)
 (global-visual-line-mode t)
+(good-scroll-mode 1)
 (set-frame-parameter nil 'alpha-background 90)
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 (setq auto-save-default t
