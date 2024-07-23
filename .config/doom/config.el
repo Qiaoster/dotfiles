@@ -72,7 +72,10 @@
   (setq org-journal-carryover-items "TODO=\"TODO\"|TODO=\"STRT\"|TODO=\"WAIT\"|TODO=\"LOOP\""))
 
 (after! org-agenda
-  (setq org-agenda-files '("~/UWA2024_01/"
+  (setq org-agenda-files '("~/UWA2024-Sem2/"
+                           "~/UWA2024-Sem2/CITS5501_Software_Testing_and_Quality_Assurance/"
+                           "~/UWA2024-Sem2/GENG5512_MPE_Engineering_Research_Project_part2/"
+                           "~/UWA2024-Sem2/CITS5552_Software_Engineering_Design_Project_part2/"
                            "~/org/journal/"
                            "~/org/"))
   (setq org-agenda-include-diary t))
