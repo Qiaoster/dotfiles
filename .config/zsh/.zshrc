@@ -34,7 +34,7 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export PATH=~/.config/emacs/bin:~/scripts:$PATH
 
 setopt PROMPT_SUBST
-PROMPT="%{$(tput setaf 117)%}%D%{$(tput setaf 109)%}@%{$(tput setaf 152)%}%T %{$(tput setaf 81)%}%1~ %{$(tput sgr0)%}$ "
+PROMPT="%{$(tput setaf 117)%}%D %{$(tput setaf 152)%}%T %{$(tput setaf 81)%}%~"
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
 alias ls='ls --color=auto'
