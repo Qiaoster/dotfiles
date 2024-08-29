@@ -145,6 +145,7 @@
       (async-shell-command "./make"))))
 
 (global-set-key (kbd "M-m") 'save-and-run)
+;;(global-set-key (kbd "C-m") 'set-mark-command)
 
 (let ((perhost "~/.config/doom/perhost.el"))
   (when (file-exists-p perhost)
