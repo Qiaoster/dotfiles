@@ -1,8 +1,8 @@
-#!/bin/dash
+#!/bin/bash
 if [ -f /sys/class/power_supply/BAT0/capacity ]; then
     dunstify "$(date)  🔋$(cat /sys/class/power_supply/BAT0/capacity)"
 elif [ -f /sys/class/power_supply/BAT1/capacity ]; then
     dunstify "$(date)  🔋$(cat /sys/class/power_supply/BAT1/capacity)"
 else
-    dustify "$(date)"
+    dunstify "$(date)"
 fi

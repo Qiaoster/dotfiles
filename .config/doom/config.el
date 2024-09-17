@@ -146,7 +146,6 @@
 
 (global-set-key (kbd "M-m") 'save-and-run)
 (global-set-key (kbd "M-/") 'comment-line)
-(global-unset-key (kbd "C-SPC"))
 (global-set-key (kbd "C-SPC") 'set-mark-command)
 
 (let ((perhost "~/.config/doom/perhost.el"))
