@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/dash
 if [ -f /sys/class/power_supply/BAT0/capacity ]; then
     dunstify "$(date)  🔋$(cat /sys/class/power_supply/BAT0/capacity)"
 elif [ -f /sys/class/power_supply/BAT1/capacity ]; then
