@@ -35,6 +35,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
+(setenv "SHELL" "/bin/bash")
 (setq display-line-numbers-type 't)
 (display-time-mode t)
 (global-visual-line-mode t)
