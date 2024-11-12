@@ -37,6 +37,7 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setenv "SHELL" "/bin/bash")
 (setq display-line-numbers-type 't)
+(setq ispell-dictionary "en_AU-large")
 (display-time-mode t)
 (global-visual-line-mode t)
 (good-scroll-mode 1)
