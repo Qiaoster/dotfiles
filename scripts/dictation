@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# toggles dictation by creating/removing STATE_FILE
+
+STATE_FILE="/home/qiao/.local/state/.dictating"
+
+if [ ! -f "$STATE_FILE" ]; then
+    touch "${STATE_FILE}"
+    nerd-dictation begin
+else
+    rm "${STATE_FILE}"
+    nerd-dictation end
+fi

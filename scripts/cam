@@ -1,0 +1,2 @@
+#!/bin/dash
+mpv --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input-format=mjpeg av://v4l2:/dev/video2
