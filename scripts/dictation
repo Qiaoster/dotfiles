@@ -6,7 +6,7 @@ STATE_FILE="/home/qiao/.local/state/.dictating"
 
 if [ ! -f "$STATE_FILE" ]; then
     touch "${STATE_FILE}"
-    nerd-dictation begin
+    nerd-dictation begin --simulate-input-tool=WTYPE
 else
     rm "${STATE_FILE}"
     nerd-dictation end
