@@ -148,7 +148,7 @@
     (save-window-excursion
       (if (file-exists-p "make")
         (async-shell-command "./make")
-        (async-shell-command "tcc -run main.c")))))
+        (async-shell-command (format "tcc -run %s" (buffer-file-name)))))))
 
 (global-set-key (kbd "M-m") 'save-and-run)
 (global-set-key (kbd "M-/") 'comment-line)
