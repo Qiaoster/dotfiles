@@ -4,6 +4,6 @@ gtk-titlebar = false
 window-decoration = false
 window-padding-x = 15
 window-padding-y = 10
-font-size = 16
+font-size = 14
 theme = Solarized Dark Higher Contrast
 resize-overlay = never
