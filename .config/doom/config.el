@@ -142,6 +142,11 @@
   "save current buffer and run \"./make\" command on current directory"
   (interactive)
   (save-buffer)
+  ;; Kill running async processes
+  (when (get-buffer "*Async Shell Command*")
+    (let ((proc (get-buffer-process "*Async Shell Command*")))
+      (when proc
+        (delete-process proc))))
   (let ((split-width-threshold nil)
 	(split-height-threshold 0))
     (save-window-excursion
