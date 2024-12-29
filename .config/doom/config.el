@@ -148,11 +148,25 @@
       (when proc
         (delete-process proc))))
   (let ((split-width-threshold nil)
-	(split-height-threshold 0))
+	(split-height-threshold 0)
+        (file-ext (file-name-extension (buffer-file-name))))
+
     (save-window-excursion
-      (if (file-exists-p "make")
-        (async-shell-command "./make")
-        (async-shell-command (format "tcc -run %s" (buffer-file-name)))))))
+      (cond
+       ((file-exists-p "make")
+        (async-shell-command "./make"))
+
+       ((string= file-ext "c")
+        (async-shell-command (format "tcc -run %s" (buffer-file-name))))
+
+       ((string= file-ext "go")
+        (async-shell-command (format "go run %s" (buffer-file-name))))
+
+       ((string= file-ext "zig")
+        (async-shell-command (format "zig run -fstage1 %s" (buffer-file-name))))
+
+       (t
+        (message "Unsupported file type: %s" file-ext))))))
 
 (global-set-key (kbd "M-m") 'save-and-run)
 (global-set-key (kbd "M-/") 'comment-line)
