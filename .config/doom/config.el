@@ -86,7 +86,8 @@
 (after! org-clock
   (setq org-clock-persist t)
   (org-clock-persistence-insinuate))
-
+(add-hook 'org-mode-hook (lambda ()
+  (add-hook 'before-save-hook 'org-update-all-dblocks nil 'local)))
 (setq wl-copy-process nil)
 (defun wl-copy (text)
   (setq wl-copy-process (make-process :name "wl-copy"
@@ -163,7 +164,7 @@
         (async-shell-command (format "go run %s" (buffer-file-name))))
 
        ((string= file-ext "zig")
-        (async-shell-command (format "zig run -fstage1 %s" (buffer-file-name))))
+        (async-shell-command (format "zig run %s" (buffer-file-name))))
 
        (t
         (message "Unsupported file type: %s" file-ext))))))
