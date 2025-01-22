@@ -44,6 +44,8 @@
 (good-scroll-mode 1)
 (set-frame-parameter nil 'alpha-background 90)
 (add-to-list 'default-frame-alist '(alpha-background . 90))
+(add-to-list 'auto-mode-alist '("\\.vs\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.fs\\'" . glsl-mode))
 (setq auto-save-default t
       make-backup-file t)
 (add-hook 'evil-insert-state-exit-hook
