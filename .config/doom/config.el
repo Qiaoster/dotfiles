@@ -90,6 +90,7 @@
   (org-clock-persistence-insinuate))
 (add-hook 'org-mode-hook (lambda ()
   (add-hook 'before-save-hook 'org-update-all-dblocks nil 'local)))
+(setq org-duration-format 'h:mm)
 (setq wl-copy-process nil)
 (defun wl-copy (text)
   (setq wl-copy-process (make-process :name "wl-copy"
