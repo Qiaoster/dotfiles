@@ -23,8 +23,9 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 export PATH=~/.config/emacs/bin:~/scripts:$PATH
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json
+# alias vk-nvidia='export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json'
+# alias vk-amd='export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.json'
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -39,3 +40,8 @@ alias emacsserver='LC_CTYPE=zh_CN.UTF-8 emacs --daemon'
 alias pico='~/pico-8/pico8_dyn -home ~/pico-8/data -root_path ~/pico-8/data/carts'
 alias lofi='mpv --no-video https://www.youtube.com/live/jfKfPfyJRdk?si=T3DbMwDLc691Uoz4'
 alias ls='eza -l'
+alias discord='webcord --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime'
+alias flatsteam='flatpak run com.valvesoftware.Steam'
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
