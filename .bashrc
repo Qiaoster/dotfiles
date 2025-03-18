@@ -42,6 +42,7 @@ alias lofi='mpv --no-video https://www.youtube.com/live/jfKfPfyJRdk?si=T3DbMwDLc
 alias ls='eza -l'
 alias discord='webcord --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime'
 alias flatsteam='flatpak run com.valvesoftware.Steam'
+alias comfy='source ai/aienv/bin/activate && python ai/ComfyUI/main.py'
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
