@@ -1,2 +1,2 @@
-#/bin/dash
+#!/bin/dash
 grim -g "$(slurp -d)" - | wl-copy -t image/png

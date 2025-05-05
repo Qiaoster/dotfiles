@@ -31,7 +31,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-oksolar-dark)
+(setq doom-theme 'doom-solarized-dark-high-contrast)
 
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -47,7 +47,7 @@
 (add-to-list 'auto-mode-alist '("\\.vs\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.fs\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
-(add-to-list 'interpreter-mode-alist '("dash" . sh))
+(add-to-list 'interpreter-mode-alist '("dash" . sh-mode))
 (setq auto-save-default t
       make-backup-file t)
 (add-hook 'evil-insert-state-exit-hook
