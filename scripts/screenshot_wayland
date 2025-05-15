@@ -1,2 +1,2 @@
 #!/bin/dash
-grim -g "$(slurp -d)" - | wl-copy -t image/png
+grim -g "$(slurp -d -c "#00000000")" - | wl-copy -t image/png
