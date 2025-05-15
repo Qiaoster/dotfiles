@@ -150,11 +150,11 @@ configuration {
   }
 }
 
-//@theme "current.rasi"
 
 @import "perhost.rasi"
+@theme "current.rasi"
 
-@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
+/* @theme "/usr/share/rofi/themes/gruvbox-dark.rasi" */
 
 window {
     background-color: @background;
