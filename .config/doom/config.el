@@ -145,7 +145,7 @@
                                  projectile-project-root-files-bottom-up)))
 
 (defun save-and-run ()
-  "save current buffer and run \"./make\" command on current directory"
+  "save current buffer and \"make\" from current directory"
   (interactive)
   (save-buffer)
   ;; Kill running async processes
@@ -172,7 +172,8 @@
         (async-shell-command (format "zig run %s" (buffer-file-name))))
 
        (t
-        (message "Unsupported file type: %s" file-ext))))))
+        (message "Unsupported file type: %s" file-ext)))))
+  (keyboard-escape-quit))
 
 (global-set-key (kbd "M-m") 'save-and-run)
 (global-set-key (kbd "M-/") 'comment-line)
