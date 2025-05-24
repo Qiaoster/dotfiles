@@ -51,9 +51,10 @@
 (setq auto-save-default t
       make-backup-file t)
 (add-hook 'evil-insert-state-exit-hook
-           (lambda ()
-             (unless (eq major-mode 'shell-mode)
-               (call-interactively #'save-buffer))))
+          (lambda ()
+            (when (and (buffer-file-name)  ; Only save actual file buffers
+                       (not (string-match-p "\\*.*\\*" (buffer-name)))) ; Skip special buffers
+              (call-interactively #'save-buffer))))
 (setq confirm-kill-emacs nil)
 ;;(add-hook! 'evil-insert-state-exit-hook
 ;;  (lambda ()
@@ -172,8 +173,7 @@
         (async-shell-command (format "zig run %s" (buffer-file-name))))
 
        (t
-        (message "Unsupported file type: %s" file-ext)))))
-  (keyboard-escape-quit))
+        (message "Unsupported file type: %s" file-ext))))))
 
 (global-set-key (kbd "M-m") 'save-and-run)
 (global-set-key (kbd "M-/") 'comment-line)
