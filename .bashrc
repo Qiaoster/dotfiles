@@ -41,8 +41,15 @@ alias pico='~/pico-8/pico8_dyn -home ~/pico-8/data -root_path ~/pico-8/data/cart
 alias lofi='mpv --no-video https://www.youtube.com/live/jfKfPfyJRdk?si=T3DbMwDLc691Uoz4'
 alias ls='eza -l --icons --group-directories-first'
 alias discord='webcord --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime'
-alias flatsteam='flatpak run com.valvesoftware.Steam'
 alias comfy='source ai/aienv/bin/activate && python ai/ComfyUI/main.py'
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
