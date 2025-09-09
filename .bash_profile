@@ -17,3 +17,6 @@
 #    exec Hyprland
 #fi
 exec Hyprland
+
+# Created by `pipx` on 2025-08-08 12:33:09
+export PATH="$PATH:/home/qiao/.local/bin"

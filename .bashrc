@@ -53,3 +53,6 @@ function y() {
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
+# Created by `pipx` on 2025-08-08 12:33:09
+export PATH="$PATH:/home/qiao/.local/bin"

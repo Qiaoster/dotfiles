@@ -1,0 +1,2 @@
+#!/bin/sh
+grim -g "$(slurp -d -c "#00000000")" - | display

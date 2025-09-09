@@ -20,8 +20,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 16))
+(setq doom-font (font-spec :family "Monaspace Neon" :size 16 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "Monaspace Argon" :size 16))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -67,10 +67,11 @@
 (after! org
   (setq org-log-done t)
   (setq org-log-into-drawer t)
-  (setq org-todo-keywords '((sequence "TODO" "STRT" "WAIT" "LOOP" "|" "DONE" "DROP")))
+  (setq org-todo-keywords '((sequence "TODO" "LOOP" "|" "DONE" "DROP")))
   (setq org-todo-keyword-faces '(("TODO" . +org-todo-cancel)
-                                 ("STRT" . +org-todo-project)
-                                 ("WAIT" . +org-todo-onhold)
+                                 ;; ("STRT" . +org-todo-project)
+                                 ;; ("WAIT" . +org-todo-onhold)
+                                 ("DROP" . +org-todo-onhold)
                                  ("LOOP" . +org-todo-project))))
 ;;(font-lock-add-keywords 'org-mode '(("(*\?)" 0 error t)))
 
@@ -95,6 +96,7 @@
   (add-hook 'before-save-hook 'org-update-all-dblocks nil 'local)))
 (setq org-duration-format 'h:mm)
 (setq wl-copy-process nil)
+(setq org-hierarchical-todo-statistics nil)
 (defun wl-copy (text)
   (setq wl-copy-process (make-process :name "wl-copy"
                                       :buffer nil

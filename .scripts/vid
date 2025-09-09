@@ -1,0 +1,4 @@
+#!/bin/bash
+
+url="$1"
+yt-dlp -o "~/.local/share/WeChat_Data/%(title)s.%(ext)s" -t mp4 "$url"
