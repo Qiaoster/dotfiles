@@ -5,5 +5,5 @@ window-decoration = false
 window-padding-x = 15
 window-padding-y = 10
 font-size = 14
-theme = GruvboxDark
+theme = Gruvbox Dark
 resize-overlay = never
