@@ -21,7 +21,7 @@ export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
-export PATH=~/.config/emacs/bin:~/scripts:$PATH
+export PATH=~/.config/emacs/bin:~/.scripts:$PATH
 
 # export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json
 # alias vk-nvidia='export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json'

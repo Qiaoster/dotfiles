@@ -67,10 +67,10 @@
 (after! org
   (setq org-log-done t)
   (setq org-log-into-drawer t)
-  (setq org-todo-keywords '((sequence "TODO" "LOOP" "|" "DONE" "DROP")))
+  (setq org-todo-keywords '((sequence "TODO" "LOOP" "WAIT" "|" "DONE" "DROP")))
   (setq org-todo-keyword-faces '(("TODO" . +org-todo-cancel)
                                  ;; ("STRT" . +org-todo-project)
-                                 ;; ("WAIT" . +org-todo-onhold)
+                                 ("WAIT" . +org-todo-onhold)
                                  ("DROP" . +org-todo-onhold)
                                  ("LOOP" . +org-todo-project))))
 ;;(font-lock-add-keywords 'org-mode '(("(*\?)" 0 error t)))
