@@ -47,6 +47,7 @@
 (add-to-list 'auto-mode-alist '("\\.vs\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.fs\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.qml\\'" . qml-ts-mode))
 (add-to-list 'interpreter-mode-alist '("dash" . sh-mode))
 (setq auto-save-default t
       make-backup-file t)
@@ -85,10 +86,6 @@
   (add-hook 'qml-ts-mode-hook (lambda ()
                                 (setq-local electric-indent-chars '(?\n ?\( ?\) ?{ ?} ?\[ ?\] ?\; ?,))
                                 (lsp-deferred))))
-
-(use-package! treesit-auto
-  :config
-  (global-treesit-auto-mode))
 
 (after! org-journal
   (setq org-journal-dir "~/org/journal/"
