@@ -44,6 +44,51 @@
     alternate-urgent-foreground: @urgent-foreground;
     selected-urgent-background:  @gruvbox-dark-red-light;
     selected-urgent-foreground:  @urgent-foreground;
+
+    /* Solaris CDE Colors */
+    solaris-crimson:      #b24d79;
+    solaris-shadow:       #56253b;
+    solaris-light:        #dcacc2;
+    solaris-bg:           #524c8a;
+    solaris-grey:         #adb5c6;
+    solaris-border:       #5A636B;
+    solaris-navy:         #718ba4;
+    solaris-white:        #fff7ea;
+    solaris-black:        #000000;
+    solaris-aqua:         #68a79f;
+    solaris-teal:         #8dadc6;
+    solaris-pink:         #d39797;
+    solaris-purple:       #9793b4;
+    solaris-lime:         #e4e425;
+
+    /* Theme colors */
+    background:                  @solaris-grey;
+    background-color:            @background;
+    foreground:                  @solaris-black;
+    border-color:                @solaris-crimson;
+    separatorcolor:              @solaris-border;
+    scrollbar-handle:            @border-color;
+
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @background;
+    alternate-normal-foreground: @foreground;
+    selected-normal-background:  @solaris-crimson;
+    selected-normal-foreground:  @solaris-white;
+
+    active-background:           @solaris-teal;
+    active-foreground:           @solaris-shadow;
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+    selected-active-background:  @solaris-aqua;
+    selected-active-foreground:  @active-foreground;
+
+    urgent-background:           @solaris-crimson;
+    urgent-foreground:           @solaris-white;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+    selected-urgent-background:  @solaris-pink;
+    selected-urgent-foreground:  @urgent-foreground;
 }
 
 window {
