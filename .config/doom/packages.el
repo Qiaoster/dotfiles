@@ -20,6 +20,11 @@
 ;; https://github.com/radian-software/straight.el#the-recipe-format
 ;; (package! another-package
 ;;   :recipe (:host github :repo "username/repo"))
+(package! qml-ts-mode
+  :recipe (:host github :repo "xhcoding/qml-ts-mode"))
+(package! tree-sitter-qml
+  :recipe (:host github :repo "yuja/tree-sitter-qmljs"))
+(package! treesit-auto)
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify

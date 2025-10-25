@@ -74,6 +74,21 @@
                                  ("DROP" . +org-todo-onhold)
                                  ("LOOP" . +org-todo-project))))
 ;;(font-lock-add-keywords 'org-mode '(("(*\?)" 0 error t)))
+(use-package! qml-ts-mode
+  :after lsp-mode
+  :config
+  (add-to-list 'lsp-language-id-configuration '(qml-ts-mode . "qml-ts"))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("qmlls" "-E"))
+                    :activation-fn (lsp-activate-on "qml-ts")
+                    :server-id 'qmlls))
+  (add-hook 'qml-ts-mode-hook (lambda ()
+                                (setq-local electric-indent-chars '(?\n ?\( ?\) ?{ ?} ?\[ ?\] ?\; ?,))
+                                (lsp-deferred))))
+
+(use-package! treesit-auto
+  :config
+  (global-treesit-auto-mode))
 
 (after! org-journal
   (setq org-journal-dir "~/org/journal/"
