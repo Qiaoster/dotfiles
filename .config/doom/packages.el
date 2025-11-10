@@ -10,6 +10,7 @@
 (package! org-journal)
 (package! evil-tutor)
 (package! good-scroll)
+(package! org-pomodoro)
 ;;(package! org-archive
 ;;  :after org
 ;;  :config
