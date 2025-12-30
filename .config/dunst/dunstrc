@@ -4,7 +4,7 @@
     ### Display ###
 
     # Which monitor should the notifications be displayed on.
-    monitor = 0
+    monitor = 1
 
     # Display notification on focused monitor.  Possible modes are:
     #   mouse: follow mouse pointer
@@ -96,8 +96,10 @@
 
     # Defines color of the frame around the notification window.
     # frame_color = "#002b36" # Solrized
-    frame_color = "#a89984" # Gruvbox
-    highlight = "#a89984"
+    # frame_color = "#a89984" # Gruvbox
+    # highlight = "#a89984" # Gruvbox
+    frame_color = "#aeb2c3" # Solaris
+
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -203,9 +205,9 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = Adwaita:dark
+    # icon_theme = Adwaita:dark
     # You can also set multiple icon themes, with the leftmost one being used first.
-    # icon_theme = "Adwaita, breeze"
+    icon_theme = "Adwaita, breeze"
 
     # Align icons left/right/top/off
     icon_position = left
@@ -321,8 +323,12 @@
     # foreground = "#b3c4c6"
 
     # Gruvbox
-    background = "#282828"
-    foreground = "#ebdbb2"
+    # background = "#282828"
+    # foreground = "#ebdbb2"
+
+    # Solaris
+    background = "#524c8a"
+    foreground = "#aeb2c3"
 
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
@@ -336,6 +342,11 @@
     # Gruvbox
     background = "#282828"
     foreground = "#ebdbb2"
+
+    # Solaris
+    background = "#524c8a"
+    foreground = "#aeb2c3"
+
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
