@@ -4,19 +4,21 @@
 # Arbitrary but unique message tag
 msgTag="myvolume"
 
-# Change the volume using alsa(might differ if you use pulseaudio)
-amixer set Master "$@" > /dev/null
+# Change the volume using wpctl (PipeWire/WirePlumber), capped at 100%
+wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ "$@"
 
-# Query amixer for the current volume and whether or not the speaker is muted
-volume="$(amixer get Master | tail -1 | awk '{print $4}' | sed 's/[^0-9]*//g')"
-mute="$(amixer get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
-if [ "$mute" = "off" ]; then
+# Query wpctl for the current volume and whether or not the speaker is muted
+output="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+mute="$(echo "$output" | grep -o '\[MUTED\]')"
+
+if [ -n "$mute" ]; then
     # Show the sound muted notification
     dunstify -a "changeVolume" -u low -i audio-volume-muted -h string:x-dunst-stack-tag:$msgTag "🔇 Muted"
 else
-    # Show the volume notification
-    # some hack arithmetic to make result always land on multiples of 5%, bash can't do float math
-    volumePercent=$((5*((volume)*20/65535)))
+    # Parse volume from wpctl output (format: "Volume: 0.50")
+    volumeFloat="$(echo "$output" | awk '{print $2}')"
+    # Subtract 0.01 to compensate for PipeWire's logarithmic scale, then convert to percentage, cap at 100
+    volumePercent="$(awk "BEGIN {v = ($volumeFloat - 0.01) * 100; snapped = int((v + 2.5) / 5) * 5; if (snapped > 100) snapped = 100; printf \"%.0f\", snapped}")"
     dunstify -a "changeVolume" -u low -i audio-volume-high -h string:x-dunst-stack-tag:$msgTag -h int:value:"$volumePercent" "🔊 Volume: ${volumePercent}%"
 fi
 

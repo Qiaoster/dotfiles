@@ -13,8 +13,6 @@ Item {
 
     property int volumeLevel: 0
     property bool isMuted: false
-    property bool isDragging: false
-    property bool showSlider: mainMouseArea.containsMouse || sliderArea.containsMouse || sliderMouseArea.containsMouse || isDragging
 
     // Get volume status
     Process {
@@ -24,12 +22,26 @@ Item {
 
         stdout: SplitParser {
             onRead: data => {
-                if (isDragging) return;
                 var output = data.trim();
                 isMuted = output.includes("[MUTED]");
                 var match = output.match(/Volume:\s+([\d.]+)/);
                 if (match) {
-                    volumeLevel = Math.round(parseFloat(match[1]) * 100);
+                    var volumeFloat = parseFloat(match[1]);
+
+                    // Special case: 1.0 should display as 100%
+                    if (volumeFloat >= 1.0) {
+                        volumeLevel = 100;
+                    } else {
+                        // Subtract 0.01 to compensate for PipeWire's logarithmic scale
+                        var rawVolume = (volumeFloat - 0.01) * 100;
+                        // Treat anything < 1.5% as 0% to prevent flickering
+                        if (rawVolume < 1.5) {
+                            volumeLevel = 0;
+                        } else {
+                            // Round to nearest 5% to match keyboard behavior
+                            volumeLevel = Math.round(rawVolume / 5) * 5;
+                        }
+                    }
                 }
             }
         }
@@ -45,13 +57,7 @@ Item {
     Process {
         id: volumeSet
         property int targetVolume: 50
-        command: ["sh", "-c", "wpctl set-volume @DEFAULT_AUDIO_SINK@ " + (targetVolume / 100.0)]
-    }
-
-    // Audio feedback process
-    Process {
-        id: audioFeedback
-        command: ["canberra-gtk-play", "-i", "audio-volume-change", "-d", "changeVolume"]
+        command: ["sh", "-c", "wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ " + ((targetVolume + 1) / 100.0)]
     }
 
     // Refresh timer
@@ -60,10 +66,8 @@ Item {
         running: true
         repeat: true
         onTriggered: {
-            if (!isDragging) {
-                volumeCheck.running = false;
-                volumeCheck.running = true;
-            }
+            volumeCheck.running = false;
+            volumeCheck.running = true;
         }
     }
 
@@ -73,7 +77,7 @@ Item {
         anchors.fill: parent
         color: "#6663a0"
 
-        // Inset border effect
+        // Sunken/inset border effect (dark on top/left, light on bottom/right)
         Rectangle {
             anchors {
                 top: parent.top
@@ -118,257 +122,121 @@ Item {
             id: mainMouseArea
             anchors.fill: parent
             hoverEnabled: true
+
             onClicked: {
                 muteToggle.running = true;
             }
+
+            onWheel: wheel => {
+                // Positive angleDelta.y means scroll up (increase volume)
+                // Negative angleDelta.y means scroll down (decrease volume)
+                var delta = wheel.angleDelta.y > 0 ? 5 : -5;
+                var newVolume = Math.max(0, Math.min(100, volumeLevel + delta));
+
+                volumeLevel = newVolume;
+                volumeSet.targetVolume = newVolume;
+                volumeSet.running = false;
+                volumeSet.running = true;
+            }
         }
 
-        RowLayout {
+        Canvas {
+            id: volumeCanvas
             anchors.fill: parent
             anchors.margins: 4
-            spacing: 4
 
-            // Volume icon
-            Rectangle {
-                width: 24
-                height: 24
-                color: isMuted ? "#666" : "#9694c4"
-                border.color: "#AEB2C3"
-                border.width: 1
+            onPaint: {
+                var ctx = getContext("2d");
+                ctx.clearRect(0, 0, width, height);
 
-                Text {
-                    anchors.centerIn: parent
-                    text: isMuted ? "🔇" : (volumeLevel > 50 ? "🔊" : (volumeLevel > 0 ? "🔉" : "🔈"))
-                    font.pixelSize: 14
+                var centerX = width / 2;
+                var centerY = height / 2;
+
+                // Scale icon relative to container height (0.8 = 80% of container height)
+                var iconScale = height * 0.8;
+
+                // Speaker dimensions
+                var speakerBoxWidth = iconScale * 0.3;
+                var speakerBoxHeight = iconScale * 0.625;
+                var speakerConeWidth = iconScale * 0.5;
+                var speakerConeHeight = iconScale * 1.2;
+
+                // Wave dimensions
+                var coneEndX = speakerConeWidth;
+                var wave1Radius = iconScale * 0.4375;
+                var wave2Radius = iconScale * 0.625;
+                var wave3Radius = iconScale * 0.8125;
+
+                // Calculate icon positioning to center the entire icon including all waves
+                var iconLeftEdge = -speakerBoxWidth;
+                var iconRightEdge = coneEndX + wave3Radius;
+                var iconCenterOffset = (iconLeftEdge + iconRightEdge) / 2;
+                var refX = centerX - iconCenterOffset;
+
+                // Draw large semi-transparent speaker icon in background
+                ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+                ctx.lineWidth = 3;
+
+                // Speaker box (rectangle)
+                ctx.fillRect(refX - speakerBoxWidth, centerY - speakerBoxHeight/2, speakerBoxWidth, speakerBoxHeight);
+
+                // Speaker cone (trapezoid)
+                ctx.beginPath();
+                ctx.moveTo(refX, centerY - speakerBoxHeight/2);
+                ctx.lineTo(refX + coneEndX, centerY - speakerConeHeight/2);
+                ctx.lineTo(refX + coneEndX, centerY + speakerConeHeight/2);
+                ctx.lineTo(refX, centerY + speakerBoxHeight/2);
+                ctx.closePath();
+                ctx.fill();
+
+                // Sound waves or mute indicator
+                if (!isMuted) {
+                    ctx.lineWidth = 3;
+                    ctx.lineCap = "round";
+
+                    // Volume level determines number of waves
+                    if (volumeLevel > 0) {
+                        ctx.beginPath();
+                        ctx.arc(refX + coneEndX, centerY, wave1Radius, -Math.PI/4, Math.PI/4, false);
+                        ctx.stroke();
+                    }
+
+                    if (volumeLevel > 33) {
+                        ctx.beginPath();
+                        ctx.arc(refX + coneEndX, centerY, wave2Radius, -Math.PI/4, Math.PI/4, false);
+                        ctx.stroke();
+                    }
+
+                    if (volumeLevel > 66) {
+                        ctx.beginPath();
+                        ctx.arc(refX + coneEndX, centerY, wave3Radius, -Math.PI/4, Math.PI/4, false);
+                        ctx.stroke();
+                    }
+                } else {
+                    // Draw X for muted
+                    var muteXSize = iconScale * 0.7;
+                    var muteXOffset = coneEndX + iconScale * 0.2;
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(refX + muteXOffset, centerY - muteXSize/2);
+                    ctx.lineTo(refX + muteXOffset + muteXSize, centerY + muteXSize/2);
+                    ctx.moveTo(refX + muteXOffset + muteXSize, centerY - muteXSize/2);
+                    ctx.lineTo(refX + muteXOffset, centerY + muteXSize/2);
+                    ctx.stroke();
                 }
-            }
 
-            // Volume percentage
-            Text {
-                text: volumeLevel + "%"
-                font.family: "Courier"
-                font.pixelSize: 11
-                color: "#ffffff"
+                // Draw percentage or muted text prominently in center
+                ctx.font = "bold 14px Monospace";
+                ctx.fillStyle = "#ffffff";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(isMuted ? "Muted" : volumeLevel + "%", centerX, centerY);
             }
         }
     }
 
-    // Popup slider window
-    PopupWindow {
-        id: sliderPopup
-        visible: showSlider || isDragging
-
-        anchor.window: panelWindow
-        anchor.rect.x: {
-            // Explicitly track root.x to ensure binding updates
-            var baseX = root.x;
-            var pos = root.mapToItem(null, 0, 0);
-            return pos.x + root.width / 2 - width / 2;
-        }
-        anchor.rect.y: {
-            var pos = root.mapToItem(null, 0, 0);
-            return pos.y + root.height + 4;
-        }
-
-        implicitWidth: 40
-        implicitHeight: 150
-
-        Rectangle {
-            anchors.fill: parent
-            color: "#7c7bb8"
-
-            // Border
-            Rectangle {
-                anchors {
-                    top: parent.top
-                    left: parent.left
-                    right: parent.right
-                }
-                height: 2
-                color: "#AEB2C3"
-            }
-
-            Rectangle {
-                anchors {
-                    top: parent.top
-                    left: parent.left
-                    bottom: parent.bottom
-                }
-                width: 2
-                color: "#AEB2C3"
-            }
-
-            Rectangle {
-                anchors {
-                    bottom: parent.bottom
-                    left: parent.left
-                    right: parent.right
-                }
-                height: 2
-                color: "#3d3866"
-            }
-
-            Rectangle {
-                anchors {
-                    top: parent.top
-                    right: parent.right
-                    bottom: parent.bottom
-                }
-                width: 2
-                color: "#3d3866"
-            }
-
-            MouseArea {
-                id: sliderArea
-                anchors.fill: parent
-                hoverEnabled: true
-            }
-
-            Item {
-                anchors.fill: parent
-                anchors.margins: 8
-
-                // Volume percentage at top
-                Text {
-                    anchors {
-                        top: parent.top
-                        horizontalCenter: parent.horizontalCenter
-                    }
-                    text: volumeLevel + "%"
-                    font.family: "Courier"
-                    font.pixelSize: 12
-                    font.weight: Font.Bold
-                    color: "#ffffff"
-                }
-
-                // Slider track (vertical, sunken)
-                Rectangle {
-                    anchors {
-                        top: parent.top
-                        bottom: parent.bottom
-                        horizontalCenter: parent.horizontalCenter
-                        topMargin: 20
-                    }
-                    width: 8
-                    color: "#524c8a"
-
-                    // Inset effect
-                    Rectangle {
-                        anchors {
-                            top: parent.top
-                            left: parent.left
-                            bottom: parent.bottom
-                        }
-                        width: 1
-                        color: "#3d3866"
-                    }
-
-                    Rectangle {
-                        anchors {
-                            top: parent.top
-                            left: parent.left
-                            right: parent.right
-                        }
-                        height: 1
-                        color: "#3d3866"
-                    }
-
-                    // Filled portion (from bottom up)
-                    Rectangle {
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                            bottom: parent.bottom
-                        }
-                        height: parent.height * (volumeLevel / 100)
-                        color: isMuted ? "#666" : "#AEB2C3"
-                    }
-
-                    // Slider handle
-                    Rectangle {
-                        y: Math.max(0, Math.min(parent.height - height, parent.height - (parent.height * (volumeLevel / 100)) - height / 2))
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        width: 20
-                        height: 16
-                        color: "#9694c4"
-
-                        // 3D effect
-                        Rectangle {
-                            anchors {
-                                top: parent.top
-                                left: parent.left
-                                right: parent.right
-                            }
-                            height: 1
-                            color: "#AEB2C3"
-                        }
-
-                        Rectangle {
-                            anchors {
-                                top: parent.top
-                                left: parent.left
-                                bottom: parent.bottom
-                            }
-                            width: 1
-                            color: "#AEB2C3"
-                        }
-
-                        Rectangle {
-                            anchors {
-                                bottom: parent.bottom
-                                left: parent.left
-                                right: parent.right
-                            }
-                            height: 1
-                            color: "#3d3866"
-                        }
-
-                        Rectangle {
-                            anchors {
-                                top: parent.top
-                                right: parent.right
-                                bottom: parent.bottom
-                            }
-                            width: 1
-                            color: "#3d3866"
-                        }
-                    }
-
-                    MouseArea {
-                        id: sliderMouseArea
-                        anchors.fill: parent
-                        hoverEnabled: true
-
-                        onPressed: mouse => {
-                            isDragging = true;
-                            updateVolume(mouse.y);
-                        }
-
-                        onPositionChanged: mouse => {
-                            if (pressed) {
-                                updateVolume(mouse.y);
-                            }
-                        }
-
-                        onReleased: {
-                            isDragging = false;
-                            volumeCheck.running = false;
-                            volumeCheck.running = true;
-                            audioFeedback.running = false;
-                            audioFeedback.running = true;
-                        }
-
-                        function updateVolume(mouseY) {
-                            // Inverted: top = 100%, bottom = 0%
-                            var newVolume = Math.max(0, Math.min(100, Math.round((1 - mouseY / height) * 100)));
-                            volumeLevel = newVolume;
-                            volumeSet.targetVolume = newVolume;
-                            volumeSet.running = false;
-                            volumeSet.running = true;
-                        }
-                    }
-                }
-            }
-        }
-    }
+    // Trigger repaint when volume or mute state changes
+    onVolumeLevelChanged: volumeCanvas.requestPaint()
+    onIsMutedChanged: volumeCanvas.requestPaint()
 }
