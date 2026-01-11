@@ -60,6 +60,12 @@ Item {
         command: ["sh", "-c", "wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ " + ((targetVolume + 1) / 100.0)]
     }
 
+    // Volume change sound process
+    Process {
+        id: volumeSound
+        command: ["canberra-gtk-play", "-i", "audio-volume-change", "-d", "changeVolume"]
+    }
+
     // Refresh timer
     Timer {
         interval: 100
@@ -137,6 +143,10 @@ Item {
                 volumeSet.targetVolume = newVolume;
                 volumeSet.running = false;
                 volumeSet.running = true;
+
+                // Play volume change sound
+                volumeSound.running = false;
+                volumeSound.running = true;
             }
         }
 
